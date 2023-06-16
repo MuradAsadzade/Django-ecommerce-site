@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ContactForm, RegisterForm
+from .forms import ContactForm, RegisterForm,PasswordResetForm
 from shop.models import Products
-from .models import WishItem,BasketItem
+from .models import WishItem,BasketItem,ResetPassword
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum,F
-
+from payment.models import Coupon
+from django.contrib.auth.models import User
+from django.conf import settings
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -18,6 +21,7 @@ def contact(request):
             return render(request, 'contact.html', {'form': form, 'result': 'success'})
         return render(request, 'contact.html', {'form': form, 'result': 'fail'})
     return render(request, 'contact.html', {'form': form})
+
 
 @login_required
 def wishlist_view(request):
@@ -46,11 +50,40 @@ def basket(request):
     all_price = basketlist.aggregate(all_price=Sum('total_price'))['all_price']
     shipping_price = all_price * 0.07
     final_price = all_price + shipping_price
+    
+    coupon_code=request.GET.get('coupon','')
+    coupon_message=None
+    coupon_status=False
+    coupon_discount=0
+    coupon_discount_amount=0
+    
+    if coupon_code:
+        coupon=Coupon.objects.filter(code=coupon_code).first()
+        if coupon:
+            is_valid,message=coupon.is_valid(request.user.customer)
+            if is_valid:
+                coupon_status='valid'
+                coupon_message=message
+                coupon_discount=coupon.discount
+                coupon_discount_amount=final_price*coupon_discount/100
+                final_price-=coupon_discount_amount
+            else:
+                coupon_status='invalid'
+                coupon_message=message
+        else:
+            coupon_status='invalid'
+            coupon_message='Bele bir kod yoxdur'    
+    
     return render(request, 'basket.html', {
         'basketlist' : basketlist,
-        'all_price' : all_price,
-        'shipping_price' : shipping_price,
+        'all_price' : round(all_price,2),
+        'shipping_price' : round(shipping_price,2),
         'final_price' : final_price,
+        'coupon_code':coupon_code,
+        'coupon_message':coupon_message,
+        'coupon_status':coupon_status,
+        'coupon_discount':coupon_discount,
+        'coupon_discount_amount':round(coupon_discount_amount,2),
     })
     
 @login_required
@@ -97,8 +130,8 @@ def login_view(request):
         if user:
             login(request, user)
             return redirect('shop:home')
-        return render(request, 'login.html', {'fail': True})
-    return render(request, 'login.html', {'fail': False})
+        return render(request, 'login.html', {'fail':True})
+    return render(request, 'login.html', {})
 
 
 def register(request):
@@ -116,4 +149,54 @@ def register(request):
 def logout_view(request):
     logout(request)
     return redirect('customer:login')
+
+
+
+usd_eq={'AZN':1.7,'TRY':21,'EUR':0.93,'USD':1}
+def change_currency(request):
+    currency=request.GET.get('currency')
+    currency_ratio=usd_eq[currency]
+    request.session['currency']=currency
+    request.session['currency_ratio']=currency_ratio
+    return redirect(request.META.get('HTTP_REFERER'))
+
+
+def forgot_password_view(request):
+    if request.method=="POST":
+        email=request.POST.get('email')
+        user=User.objects.filter(email=email).first()
+        if user:
+            ResetPassword.objects.filter(user=user).update(used=True)
+            rp=ResetPassword.objects.create(user=user)
+            url=request.build_absolute_uri(rp.get_absolute_url())
+            message=f'Please renew your password from this link:{url}'
+            subject='Renew your password'
+            sender=settings.EMAIL_HOST_USER
+            send_mail(subject,message,sender,{email})
+            return redirect('customer:reset-password-result',color='success',message='Mail sent successfully')
+        else:
+            return render(request,'forgot_password.html',{'status':'invalid_user'})
+    
+    return render(request,'forgot_password.html')
+
+def reset_password_view(request,token):
+    rp=ResetPassword.objects.filter(token=token).first()
+    if rp and rp.is_valid():
+        if request.method=="GET":
+            form=PasswordResetForm(initial={'token':token})
+            return render(request,'reset_password.html',{'form':form})
+        else:
+            form=PasswordResetForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('customer:reset-password-result',color='success',message='Password changed sent successfully')
+            return render(request,'reset_password.html',{'form':form})
+    else:
+        return redirect('customer:reset-password-result',color='danger',message='The reset password link is invalid or expired')
+    
+    
+def reset_password_result_view(request,color,message):
+    return render(request,'reset_password_result.html',{'color':color,'message':message})
+
+
 

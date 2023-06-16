@@ -1,0 +1,269 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-01 19:21+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\payment\models.py:21
+msgid "The time of this coupon is in the past"
+msgstr "Bu kuponun vaxti keçmişdir"
+
+#: .\payment\models.py:23
+msgid "The limit of this coupon is over"
+msgstr "Kuponun limiti bitib"
+
+#: .\payment\models.py:25
+msgid "You have already used this coupon"
+msgstr "Kupondan artiq istifadə etmisiniz"
+
+#: .\payment\models.py:27
+msgid "This coupon was used successfully"
+msgstr "Kupon uğurla istifadə edildi"
+
+#: .\payment\templates\checkout.html:15 .\shop\templates\product-detail.html:18
+#: .\shop\templates\product-list.html:17 .\templates\layout.html:146
+#: .\templates\layout.html:196 .\templates\layout.html:204
+msgid "Home"
+msgstr "Ana səhifə"
+
+#: .\payment\templates\checkout.html:16 .\shop\templates\product-detail.html:19
+#: .\shop\templates\product-list.html:18 .\templates\layout.html:147
+msgid "Shop"
+msgstr "Mağaza"
+
+#: .\payment\templates\checkout.html:17
+msgid "Checkout"
+msgstr ""
+
+#: .\payment\templates\checkout.html:37 .\payment\templates\checkout.html:87
+msgid "First Name"
+msgstr ""
+
+#: .\payment\templates\checkout.html:41 .\payment\templates\checkout.html:91
+msgid "Last Name"
+msgstr ""
+
+#: .\payment\templates\checkout.html:45 .\payment\templates\checkout.html:95
+msgid "E-mail"
+msgstr ""
+
+#: .\payment\templates\checkout.html:50 .\payment\templates\checkout.html:99
+msgid "Mobile No"
+msgstr ""
+
+#: .\payment\templates\checkout.html:54
+msgid "Address"
+msgstr ""
+
+#: .\payment\templates\checkout.html:59
+msgid "Country"
+msgstr ""
+
+#: .\payment\templates\checkout.html:63
+msgid "City"
+msgstr ""
+
+#: .\payment\templates\checkout.html:68
+msgid "ZIP Code"
+msgstr ""
+
+#: .\payment\templates\checkout.html:77
+msgid "Place Order"
+msgstr ""
+
+#: .\payment\templates\checkout.html:83
+msgid "Shipping Address"
+msgstr ""
+
+#: .\payment\templates\checkout.html:103
+msgid "7"
+msgstr ""
+
+#: .\payment\templates\checkout.html:155
+msgid "Subtotal"
+msgstr ""
+
+#: .\payment\templates\checkout.html:161
+msgid "Discount"
+msgstr ""
+
+#: .\payment\templates\checkout.html:166
+msgid "Shipping"
+msgstr ""
+
+#: .\payment\templates\checkout.html:172
+msgid "Total"
+msgstr ""
+
+#: .\shop\templates\home.html:59
+msgid "Quality Product"
+msgstr ""
+
+#: .\shop\templates\home.html:65
+msgid "Free Shipping"
+msgstr ""
+
+#: .\shop\templates\home.html:71
+msgid "14-Day Return"
+msgstr ""
+
+#: .\shop\templates\home.html:77
+msgid "24/7 Support"
+msgstr ""
+
+#: .\shop\templates\home.html:112
+msgid "Featured Products"
+msgstr ""
+
+#: .\shop\templates\home.html:132
+msgid "Shop Now"
+msgstr ""
+
+#: .\shop\templates\product-detail.html:8
+msgid "Product Detail"
+msgstr ""
+
+#: .\shop\templates\product-detail.html:20
+msgid "Shop Detail"
+msgstr ""
+
+#: .\shop\templates\product-detail.html:109
+msgid "Share on:"
+msgstr ""
+
+#: .\shop\templates\product-detail.html:133
+msgid "Information"
+msgstr ""
+
+#: .\shop\templates\product-detail.html:137
+msgid "Additional Information"
+msgstr ""
+
+#: .\shop\templates\product-detail.html:196
+msgid "to add review"
+msgstr ""
+
+#: .\shop\templates\product-list.html:19
+msgid "Shop List"
+msgstr ""
+
+#: .\shop\templates\product-list.html:33
+msgid "Filter by price"
+msgstr ""
+
+#: .\shop\templates\product-list.html:41
+msgid "Filter by color"
+msgstr ""
+
+#: .\shop\templates\product-list.html:55
+msgid "Filter by size"
+msgstr ""
+
+#: .\shop\templates\product-list.html:68
+msgid "Search"
+msgstr ""
+
+#: .\templates\layout.html:40
+msgid "About"
+msgstr ""
+
+#: .\templates\layout.html:41 .\templates\layout.html:149
+msgid "Contact"
+msgstr ""
+
+#: .\templates\layout.html:42
+msgid "Help"
+msgstr ""
+
+#: .\templates\layout.html:43
+msgid "FAQs"
+msgstr ""
+
+#: .\templates\layout.html:52
+msgid "Logout"
+msgstr ""
+
+#: .\templates\layout.html:54
+msgid "Login"
+msgstr ""
+
+#: .\templates\layout.html:55 .\templates\layout.html:216
+msgid "Register"
+msgstr ""
+
+#: .\templates\layout.html:60
+msgid "USD"
+msgstr ""
+
+#: .\templates\layout.html:62
+msgid "EUR"
+msgstr ""
+
+#: .\templates\layout.html:63
+msgid "GBP"
+msgstr ""
+
+#: .\templates\layout.html:64
+msgid "CAD"
+msgstr ""
+
+#: .\templates\layout.html:70
+msgid "FR"
+msgstr ""
+
+#: .\templates\layout.html:71
+msgid "AR"
+msgstr ""
+
+#: .\templates\layout.html:72
+msgid "RU"
+msgstr ""
+
+#: .\templates\layout.html:115
+msgid "Customer Service"
+msgstr ""
+
+#: .\templates\layout.html:128
+msgid "Categories"
+msgstr ""
+
+#: .\templates\layout.html:185
+msgid "Get In Touch"
+msgstr ""
+
+#: .\templates\layout.html:187
+msgid "123 Street, New York, USA"
+msgstr ""
+
+#: .\templates\layout.html:197 .\templates\layout.html:205
+msgid "Our Shop"
+msgstr ""
+
+#: .\templates\layout.html:198 .\templates\layout.html:206
+msgid "Contact Us"
+msgstr ""
+
+#: .\templates\layout.html:210
+msgid "Newsletter"
+msgstr ""
+
+#: .\templates\layout.html:220
+msgid "Follow Us"
+msgstr ""
+
+#~ msgid "Bu kuponun tarixi kecmisdir"
+#~ msgstr "Bu kuponun tarixi kecmisdir"

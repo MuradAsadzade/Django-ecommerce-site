@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
     <title>Contact</title>
@@ -36,7 +37,7 @@
                         </div>
                     {% endif %}
                     <p class="text-danger">{{form.non_field_error}}</p>
-                    <form method="POST">
+                    <form id='contact-form' method="POST">
                         {% csrf_token %}
                         <div class="control-group mb-2">
                             {{form.name}}
@@ -63,7 +64,9 @@
                             {% endfor %}
                         </div>
                         <div>
-                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Send
+                            <button class="btn btn-primary py-2 px-4 g-recaptcha" data-sitekey="6LewcGQmAAAAAMlawPXYh2NwpslsBtBLvPxMP7vZ" 
+                            data-callback='onSubmit' 
+                            data-action='submit' type="submit" id="sendMessageButton">Send
                                 Message</button>
                         </div>
                     </form>
@@ -86,3 +89,13 @@
     <!-- Contact End -->
 
 {% endblock main %}
+
+{% block scripts %}
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+      document.getElementById("contact-form").submit();
+    }
+  </script>
+{% endblock scripts %}
+

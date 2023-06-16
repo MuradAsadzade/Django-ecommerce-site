@@ -1,5 +1,5 @@
 {% load shop_helper %}
-
+{% load customer_helper %}
 
 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
     <div class="product-item bg-light mb-4">
@@ -19,7 +19,7 @@
             <a class="h6 text-decoration-none text-truncate" href="{{product.get_absolute_url}}">{{product.title}}</a>
             <div class="d-flex align-items-center justify-content-center mt-2">
                 {% if product.old_price %}
-                    <h5>${{product.price}}</h5><h6 class="text-muted ml-2"><del>${{product.old_price}}</del></h6>
+                    <h5>${% get_price_text request product.price %}</h5><h6 class="text-muted ml-2"><del>${% get_price_text request product.old_price %}</del></h6>
                 {% else %}
                     <h5>${{product.price}}</h5>
                 {% endif %}
