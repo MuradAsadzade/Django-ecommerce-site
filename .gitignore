@@ -3,3 +3,4 @@ activate.bat
 .env
 db.sqlite3
 media
+staticfiles
