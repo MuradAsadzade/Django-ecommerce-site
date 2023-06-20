@@ -176,12 +176,12 @@ EMAIL_HOST_PASSWORD=getenv('EMAIL_HOST_PASSWOR')
 EMAIL_USE_TLS=True
 
 
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django.core.cache.backends.memcached.PyMemcacheCache",
-#         "LOCATION":BASE_DIR / 'django_cache',
-#     }
-# }
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": BASE_DIR / 'django_cache',
+    }
+}
 
 
 # AKIAQND6AKBE4EOWMGXK

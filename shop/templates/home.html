@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% load i18n %}
-{% comment %} {% load cache %} {% endcomment %}
+{% load cache %}
 
 {% block title %}
     <title>{% trans "Multishop -Find online what you exactly want and wear it." %}</title>
@@ -22,7 +22,7 @@
 
 {% block main %}
     <!-- Carousel Start -->
-    {% comment %} {%cache 20 home_slider%} {% endcomment %}
+    {%cache 20 home_slider%}
     <div class="container-fluid mb-3">
         <div class="row px-xl-5">
             <div class="col-lg-8">
@@ -62,7 +62,7 @@
             </div>
         </div>
     </div>
-    {% comment %} {% endcache %} {% endcomment %}
+    {% endcache %}
     <!-- Carousel End -->
 
 
